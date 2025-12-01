@@ -1,0 +1,1715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlobalTrade360 | Professional Forex & Crypto Trading Platform</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="https://img.icons8.com/color/96/000000/bitcoin--v1.png">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== CSS RESET & VARIABLES ===== */
+        :root {
+            --primary: #0066FF;
+            --secondary: #00CC88;
+            --dark: #0F172A;
+            --darker: #0A0F1F;
+            --light: #F8FAFF;
+            --gray: #64748B;
+            --success: #10B981;
+            --danger: #EF4444;
+            --warning: #F59E0B;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            outline: none;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 102, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* ===== HEADER & NAVIGATION ===== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 20px 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--dark);
+        }
+
+        .logo i {
+            color: var(--primary);
+            font-size: 32px;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            color: var(--dark);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            padding: 180px 0 100px;
+            background: linear-gradient(135deg, #F8FAFF 0%, #EFF6FF 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800') no-repeat center right/cover;
+            opacity: 0.1;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--gray);
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ===== FEATURES SECTION ===== */
+        .features {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 18px;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 60px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: white;
+            font-size: 32px;
+        }
+
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .feature-card p {
+            color: var(--gray);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* ===== LIVE MARKETS SECTION ===== */
+        .markets {
+            padding: 100px 0;
+            background: var(--darker);
+            color: white;
+        }
+
+        .markets .section-title {
+            color: white;
+        }
+
+        .markets .section-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .market-ticker {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            overflow-x: auto;
+        }
+
+        .market-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            min-width: 800px;
+        }
+
+        .market-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            transition: var(--transition);
+        }
+
+        .market-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .market-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .market-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .btc { background: #F7931A; }
+        .eth { background: #627EEA; }
+        .xrp { background: #23292F; }
+        .eur { background: #00CC88; }
+        .gbp { background: #3D7ABD; }
+        .gold { background: #FFD700; }
+
+        .market-name {
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .market-price {
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .market-change {
+            font-weight: 600;
+            font-size: 14px;
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+
+        .positive {
+            color: var(--success);
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        .negative {
+            color: var(--danger);
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        /* ===== TESTIMONIALS SECTION ===== */
+        .testimonials {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 80px;
+            color: var(--primary);
+            opacity: 0.1;
+            font-family: Georgia, serif;
+        }
+
+        .testimonial-text {
+            font-size: 16px;
+            color: var(--gray);
+            margin-bottom: 25px;
+            line-height: 1.8;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: var(--primary);
+        }
+
+        .author-info h4 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+
+        .author-info p {
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        .author-rating {
+            color: #FFD700;
+            margin-top: 5px;
+        }
+
+        /* ===== HOW IT WORKS SECTION ===== */
+        .how-it-works {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #F8FAFF 0%, #EFF6FF 100%);
+        }
+
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            position: relative;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .steps::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 10%;
+            right: 10%;
+            height: 3px;
+            background: var(--primary);
+            opacity: 0.2;
+            z-index: 1;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: white;
+            font-size: 32px;
+            font-weight: 700;
+            box-shadow: 0 10px 20px rgba(0, 102, 255, 0.2);
+        }
+
+        .step h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .step p {
+            color: var(--gray);
+            font-size: 16px;
+            line-height: 1.6;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        /* ===== CTA SECTION ===== */
+        .cta {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+        }
+
+        .cta .btn {
+            background: white;
+            color: var(--primary);
+            font-size: 18px;
+            padding: 18px 50px;
+        }
+
+        .cta .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 255, 255, 0.3);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--darker);
+            color: white;
+            padding: 80px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-col h3 {
+            font-size: 20px;
+            margin-bottom: 25px;
+            color: white;
+        }
+
+        .footer-col p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .contact-item i {
+            color: var(--secondary);
+            font-size: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+        }
+
+        /* ===== AUTH MODALS ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 25px;
+            width: 100%;
+            max-width: 500px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: var(--gray);
+            cursor: pointer;
+            z-index: 10;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            background: rgba(0, 0, 0, 0.05);
+            color: var(--dark);
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 40px 40px 30px;
+            text-align: center;
+        }
+
+        .modal-header h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .modal-header p {
+            opacity: 0.9;
+        }
+
+        .modal-body {
+            padding: 40px;
+        }
+
+        .form-tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .form-tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            background: none;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--gray);
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .form-tab.active {
+            color: var(--primary);
+        }
+
+        .form-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        .form-container {
+            display: none;
+        }
+
+        .form-container.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+            font-size: 14px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid #E2E8F0;
+            border-radius: 12px;
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+            transition: var(--transition);
+            background: white;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 18px;
+            font-size: 16px;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .form-footer {
+            text-align: center;
+            margin-top: 25px;
+            color: var(--gray);
+            font-size: 14px;
+        }
+
+        .form-footer a {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .alert {
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: none;
+            font-size: 14px;
+        }
+
+        .alert-success {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .alert-error {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--danger);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 48px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .steps::before {
+                display: none;
+            }
+            
+            .steps {
+                flex-direction: column;
+                align-items: center;
+                gap: 50px;
+            }
+            
+            .step {
+                max-width: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 40px;
+            }
+            
+            .section-title {
+                font-size: 36px;
+            }
+            
+            .cta h2 {
+                font-size: 36px;
+            }
+            
+            .market-grid {
+                min-width: 600px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero {
+                padding: 150px 0 80px;
+            }
+            
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .section-title {
+                font-size: 30px;
+            }
+            
+            .modal-content {
+                padding: 0;
+            }
+            
+            .modal-header {
+                padding: 30px 20px 20px;
+            }
+            
+            .modal-body {
+                padding: 30px 20px;
+            }
+        }
+
+        /* ===== DASHBOARD STYLES (Initially Hidden) ===== */
+        .dashboard {
+            display: none;
+            padding-top: 100px;
+            min-height: 100vh;
+            background: #F8FAFF;
+        }
+        
+        /* You can add dashboard styles here when needed */
+    </style>
+</head>
+<body>
+    <!-- Landing Page -->
+    <div id="landingPage">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <a href="#" class="logo">
+                    <i class="fas fa-chart-line"></i>
+                    GlobalTrade<span>360</span>
+                </a>
+                
+                <nav class="nav-links">
+                    <a href="#features">Features</a>
+                    <a href="#markets">Markets</a>
+                    <a href="#testimonials">Testimonials</a>
+                    <a href="#how-it-works">How It Works</a>
+                    <a href="#" onclick="showLoginModal()">Login</a>
+                    <a href="#" class="btn btn-primary" onclick="showRegisterModal()">Get Started</a>
+                </nav>
+                
+                <div class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Professional Forex & Crypto Trading Platform</h1>
+                    <p>Join thousands of successful traders worldwide. Our AI-powered trading system delivers consistent profits with advanced risk management. Start with as little as $100.</p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary" onclick="showRegisterModal()">Start Trading Now</a>
+                        <a href="#how-it-works" class="btn btn-secondary">How It Works</a>
+                    </div>
+                    
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <div class="stat-number">$2.5B+</div>
+                            <div class="stat-label">Volume Traded</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">87.5%</div>
+                            <div class="stat-label">Success Rate</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label">Trading</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">150+</div>
+                            <div class="stat-label">Countries</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features" id="features">
+            <div class="container">
+                <h2 class="section-title">Why Choose GlobalTrade360</h2>
+                <p class="section-subtitle">Experience the future of trading with our advanced platform and AI technology</p>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3>AI Trading System</h3>
+                        <p>Our advanced AI analyzes markets 24/7 and executes trades with precision timing and optimal risk management.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Bank-Level Security</h3>
+                        <p>Military-grade encryption and secure cold storage for funds. We prioritize the safety of your investments.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <h3>Multi-Asset Trading</h3>
+                        <p>Trade Forex, Cryptocurrencies, Commodities, and Indices from a single, unified platform.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>Mobile Trading</h3>
+                        <p>Access your account and trade from anywhere with our mobile-optimized platform available on all devices.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Markets Section -->
+        <section class="markets" id="markets">
+            <div class="container">
+                <h2 class="section-title">Live Market Prices</h2>
+                <p class="section-subtitle">Real-time prices for popular trading instruments</p>
+                
+                <div class="market-ticker">
+                    <div class="market-grid">
+                        <!-- Bitcoin -->
+                        <div class="market-item">
+                            <div class="market-info">
+                                <div class="market-icon btc">
+                                    <i class="fab fa-bitcoin"></i>
+                                </div>
+                                <div>
+                                    <div class="market-name">Bitcoin</div>
+                                    <div class="market-symbol">BTC/USD</div>
+                                </div>
+                            </div>
+                            <div class="market-right">
+                                <div class="market-price" id="btc-price">$64,382.15</div>
+                                <div class="market-change positive" id="btc-change">+2.34%</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Ethereum -->
+                        <div class="market-item">
+                            <div class="market-info">
+                                <div class="market-icon eth">
+                                    <i class="fab fa-ethereum"></i>
+                                </div>
+                                <div>
+                                    <div class="market-name">Ethereum</div>
+                                    <div class="market-symbol">ETH/USD</div>
+                                </div>
+                            </div>
+                            <div class="market-right">
+                                <div class="market-price" id="eth-price">$3,487.62</div>
+                                <div class="market-change positive" id="eth-change">+1.78%</div>
+                            </div>
+                        </div>
+                        
+                        <!-- EUR/USD -->
+                        <div class="market-item">
+                            <div class="market-info">
+                                <div class="market-icon eur">
+                                    <i class="fas fa-euro-sign"></i>
+                                </div>
+                                <div>
+                                    <div class="market-name">Euro/Dollar</div>
+                                    <div class="market-symbol">EUR/USD</div>
+                                </div>
+                            </div>
+                            <div class="market-right">
+                                <div class="market-price" id="eur-price">1.0984</div>
+                                <div class="market-change positive" id="eur-change">+0.42%</div>
+                            </div>
+                        </div>
+                        
+                        <!-- GBP/USD -->
+                        <div class="market-item">
+                            <div class="market-info">
+                                <div class="market-icon gbp">
+                                    <i class="fas fa-pound-sign"></i>
+                                </div>
+                                <div>
+                                    <div class="market-name">Pound/Dollar</div>
+                                    <div class="market-symbol">GBP/USD</div>
+                                </div>
+                            </div>
+                            <div class="market-right">
+                                <div class="market-price" id="gbp-price">1.2815</div>
+                                <div class="market-change negative" id="gbp-change">-0.18%</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Gold -->
+                        <div class="market-item">
+                            <div class="market-info">
+                                <div class="market-icon gold">
+                                    <i class="fas fa-gem"></i>
+                                </div>
+                                <div>
+                                    <div class="market-name">Gold</div>
+                                    <div class="market-symbol">XAU/USD</div>
+                                </div>
+                            </div>
+                            <div class="market-right">
+                                <div class="market-price" id="gold-price">$2,184.50</div>
+                                <div class="market-change positive" id="gold-change">+0.92%</div>
+                            </div>
+                        </div>
+                        
+                        <!-- XRP -->
+                        <div class="market-item">
+                            <div class="market-info">
+                                <div class="market-icon xrp">
+                                    <i class="fas fa-coins"></i>
+                                </div>
+                                <div>
+                                    <div class="market-name">XRP</div>
+                                    <div class="market-symbol">XRP/USD</div>
+                                </div>
+                            </div>
+                            <div class="market-right">
+                                <div class="market-price" id="xrp-price">$0.6234</div>
+                                <div class="market-change positive" id="xrp-change">+1.15%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 40px;">
+                    <a href="#" class="btn btn-primary" onclick="showRegisterModal()">Start Trading These Markets</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials" id="testimonials">
+            <div class="container">
+                <h2 class="section-title">Success Stories</h2>
+                <p class="section-subtitle">See what our traders are saying about their experience</p>
+                
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            "I started with $500 and within 6 months I've grown my account to over $8,200. The AI trading system is incredibly accurate. Best investment decision I ever made!"
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="author-info">
+                                <h4>Michael Rodriguez</h4>
+                                <p>Trader since 2022</p>
+                                <div class="author-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            "As someone new to trading, I was nervous about losing money. GlobalTrade360's automated system made it easy. I'm consistently earning 15-20% monthly returns."
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="author-info">
+                                <h4>Sarah Johnson</h4>
+                                <p>Trader since 2023</p>
+                                <div class="author-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            "The customer support is outstanding, and the platform is very user-friendly. I've tried other trading platforms, but GlobalTrade360 is by far the best."
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="author-info">
+                                <h4>James Wilson</h4>
+                                <p>Professional Trader</p>
+                                <div class="author-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section class="how-it-works" id="how-it-works">
+            <div class="container">
+                <h2 class="section-title">How It Works</h2>
+                <p class="section-subtitle">Start earning in just 4 simple steps</p>
+                
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Create Account</h3>
+                        <p>Sign up in minutes with our simple registration process. No trading experience required.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>Deposit Funds</h3>
+                        <p>Fund your account via bank transfer or cryptocurrency. Minimum deposit is just $100.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Start Trading</h3>
+                        <p>Our AI system automatically analyzes markets and executes profitable trades for you.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <h3>Withdraw Profits</h3>
+                        <p>Withdraw your earnings anytime to your bank account or crypto wallet.</p>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 60px;">
+                    <a href="#" class="btn btn-primary" onclick="showRegisterModal()" style="padding: 18px 50px; font-size: 18px;">
+                        <i class="fas fa-play-circle"></i> Start Earning Now
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta">
+            <div class="container">
+                <h2>Ready to Start Your Trading Journey?</h2>
+                <p>Join thousands of successful traders who trust GlobalTrade360 with their investments. Start with as little as $100 and experience professional-grade trading.</p>
+                <a href="#" class="btn" onclick="showRegisterModal()">Get Started Free</a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-col">
+                        <a href="#" class="logo" style="color: white; margin-bottom: 25px; display: block;">
+                            <i class="fas fa-chart-line"></i>
+                            GlobalTrade<span>360</span>
+                        </a>
+                        <p>Professional Forex & Crypto Trading Platform. Trade with confidence using our advanced AI-powered trading system.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-telegram"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-col">
+                        <h3>Quick Links</h3>
+                        <div class="footer-links">
+                            <a href="#features">Features</a>
+                            <a href="#markets">Markets</a>
+                            <a href="#testimonials">Testimonials</a>
+                            <a href="#how-it-works">How It Works</a>
+                            <a href="#" onclick="showLoginModal()">Login</a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-col">
+                        <h3>Legal</h3>
+                        <div class="footer-links">
+                            <a href="#">Privacy Policy</a>
+                            <a href="#">Terms of Service</a>
+                            <a href="#">Risk Disclosure</a>
+                            <a href="#">AML Policy</a>
+                            <a href="#">Cookie Policy</a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-col">
+                        <h3>Contact Us</h3>
+                        <div class="footer-contact">
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <span>support@globaltrade360.com</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i>
+                                <span>+1 (555) 123-4567</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Global Headquarters</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="copyright">
+                    <p>&copy; 2025 GlobalTrade360. All rights reserved.</p>
+                    <p style="margin-top: 10px; font-size: 13px;">
+                        Trading involves risk. Past performance is not indicative of future results. Read our Risk Disclosure before investing.
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Auth Modal -->
+    <div class="modal" id="authModal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeAuthModal()">&times;</button>
+            
+            <div class="modal-header">
+                <h2>Welcome to GlobalTrade360</h2>
+                <p>Join thousands of successful traders worldwide</p>
+            </div>
+            
+            <div class="modal-body">
+                <div class="form-tabs">
+                    <button class="form-tab active" onclick="switchForm('login')">Login</button>
+                    <button class="form-tab" onclick="switchForm('register')">Register</button>
+                </div>
+                
+                <!-- Login Form -->
+                <div class="form-container active" id="loginForm">
+                    <div class="alert" id="loginAlert"></div>
+                    <form id="loginFormElement" onsubmit="handleLogin(event)">
+                        <div class="form-group">
+                            <label for="loginEmail">Email Address</label>
+                            <input type="email" id="loginEmail" class="form-control" placeholder="Enter your email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="loginPassword">Password</label>
+                            <input type="password" id="loginPassword" class="form-control" placeholder="Enter your password" required>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary form-submit">
+                            <i class="fas fa-sign-in-alt"></i> Login to Account
+                        </button>
+                    </form>
+                    
+                    <div class="form-footer">
+                        <p>Don't have an account? <a href="#" onclick="switchForm('register')">Sign up here</a></p>
+                    </div>
+                </div>
+                
+                <!-- Register Form -->
+                <div class="form-container" id="registerForm">
+                    <div class="alert" id="registerAlert"></div>
+                    <form id="registerFormElement" onsubmit="handleRegister(event)">
+                        <div class="form-group">
+                            <label for="registerFirstName">First Name</label>
+                            <input type="text" id="registerFirstName" class="form-control" placeholder="Enter your first name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="registerLastName">Last Name</label>
+                            <input type="text" id="registerLastName" class="form-control" placeholder="Enter your last name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="registerEmail">Email Address</label>
+                            <input type="email" id="registerEmail" class="form-control" placeholder="Enter your email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="registerPhone">Phone Number</label>
+                            <input type="tel" id="registerPhone" class="form-control" placeholder="Enter your phone number" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="registerCountry">Country</label>
+                            <select id="registerCountry" class="form-control" required>
+                                <option value="">Select your country</option>
+                                <option value="US">United States</option>
+                                <option value="UK">United Kingdom</option>
+                                <option value="CA">Canada</option>
+                                <option value="AU">Australia</option>
+                                <option value="DE">Germany</option>
+                                <option value="FR">France</option>
+                                <option value="NG">Nigeria</option>
+                                <option value="ZA">South Africa</option>
+                                <option value="IN">India</option>
+                                <option value="BR">Brazil</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="registerPassword">Password</label>
+                            <input type="password" id="registerPassword" class="form-control" placeholder="Create a password (min. 8 characters)" minlength="8" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="registerConfirmPassword">Confirm Password</label>
+                            <input type="password" id="registerConfirmPassword" class="form-control" placeholder="Confirm your password" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" required> I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary form-submit">
+                            <i class="fas fa-user-plus"></i> Create Account
+                        </button>
+                    </form>
+                    
+                    <div class="form-footer">
+                        <p>Already have an account? <a href="#" onclick="switchForm('login')">Login here</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard (Initially Hidden) -->
+    <div class="dashboard" id="dashboard">
+        <!-- Dashboard will be loaded here when user logs in -->
+    </div>
+
+    <script>
+        // ===== CONFIGURATION =====
+        const API_URL = 'https://globaltrade360-online.onrender.com';
+        let currentUser = null;
+        let authToken = null;
+
+        // ===== MODAL FUNCTIONS =====
+        function showLoginModal() {
+            document.getElementById('authModal').style.display = 'flex';
+            switchForm('login');
+        }
+
+        function showRegisterModal() {
+            document.getElementById('authModal').style.display = 'flex';
+            switchForm('register');
+        }
+
+        function closeAuthModal() {
+            document.getElementById('authModal').style.display = 'none';
+            document.getElementById('loginAlert').style.display = 'none';
+            document.getElementById('registerAlert').style.display = 'none';
+        }
+
+        function switchForm(formType) {
+            // Update tabs
+            document.querySelectorAll('.form-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Show selected form
+            document.querySelectorAll('.form-container').forEach(form => {
+                form.classList.remove('active');
+            });
+            document.getElementById(formType + 'Form').classList.add('active');
+            
+            // Clear alerts
+            document.getElementById('loginAlert').style.display = 'none';
+            document.getElementById('registerAlert').style.display = 'none';
+        }
+
+        // ===== ALERT FUNCTIONS =====
+        function showAlert(elementId, message, type = 'error') {
+            const alert = document.getElementById(elementId);
+            alert.textContent = message;
+            alert.className = `alert alert-${type}`;
+            alert.style.display = 'block';
+            setTimeout(() => {
+                alert.style.display = 'none';
+            }, 5000);
+        }
+
+        // ===== REGISTRATION =====
+        async function handleRegister(event) {
+            event.preventDefault();
+            
+            const firstName = document.getElementById('registerFirstName').value;
+            const lastName = document.getElementById('registerLastName').value;
+            const email = document.getElementById('registerEmail').value;
+            const phone = document.getElementById('registerPhone').value;
+            const country = document.getElementById('registerCountry').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('registerConfirmPassword').value;
+            
+            // Validation
+            if (password !== confirmPassword) {
+                showAlert('registerAlert', 'Passwords do not match', 'error');
+                return;
+            }
+            
+            if (password.length < 8) {
+                showAlert('registerAlert', 'Password must be at least 8 characters', 'error');
+                return;
+            }
+            
+            try {
+                const response = await fetch(`${API_URL}/api/register`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        firstName,
+                        lastName,
+                        email,
+                        phone,
+                        country,
+                        password
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    showAlert('registerAlert', 'Registration successful! Please login to continue.', 'success');
+                    setTimeout(() => {
+                        switchForm('login');
+                        document.getElementById('loginEmail').value = email;
+                    }, 2000);
+                } else {
+                    showAlert('registerAlert', data.message, 'error');
+                }
+            } catch (error) {
+                showAlert('registerAlert', 'Network error. Please try again.', 'error');
+            }
+        }
+
+        // ===== LOGIN =====
+        async function handleLogin(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            try {
+                const response = await fetch(`${API_URL}/api/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    currentUser = data.user;
+                    authToken = data.token;
+                    
+                    // Store in localStorage
+                    localStorage.setItem('gt360_token', authToken);
+                    localStorage.setItem('gt360_user', JSON.stringify(currentUser));
+                    
+                    // Close modal and show dashboard
+                    closeAuthModal();
+                    showDashboard();
+                    
+                    // If admin, redirect to admin panel
+                    if (email === 'admin@globalinvestment360') {
+                        window.location.href = 'admin-panel.html';
+                    }
+                } else {
+                    showAlert('loginAlert', data.message, 'error');
+                }
+            } catch (error) {
+                showAlert('loginAlert', 'Cannot connect to server. Please try again.', 'error');
+            }
+        }
+
+        // ===== DASHBOARD FUNCTIONS =====
+        function showDashboard() {
+            // This would load the actual dashboard
+            alert('Dashboard will be loaded in the next step. For now, test the registration/login functionality.');
+        }
+
+        // ===== LIVE MARKET UPDATES =====
+        function updateMarketPrices() {
+            // Simulate live price changes
+            const prices = {
+                'btc-price': 64382.15,
+                'eth-price': 3487.62,
+                'eur-price': 1.0984,
+                'gbp-price': 1.2815,
+                'gold-price': 2184.50,
+                'xrp-price': 0.6234
+            };
+            
+            const changes = {
+                'btc-change': 2.34,
+                'eth-change': 1.78,
+                'eur-change': 0.42,
+                'gbp-change': -0.18,
+                'gold-change': 0.92,
+                'xrp-change': 1.15
+            };
+            
+            // Update each price with small random variation
+            Object.keys(prices).forEach(key => {
+                const element = document.getElementById(key);
+                if (element) {
+                    const currentPrice = parseFloat(element.textContent.replace(/[^0-9.-]+/g, ''));
+                    const variation = (Math.random() - 0.5) * 0.1;
+                    const newPrice = currentPrice * (1 + variation / 100);
+                    element.textContent = key.includes('price') ? 
+                        `$${newPrice.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` :
+                        newPrice.toFixed(4);
+                }
+            });
+            
+            // Update changes
+            Object.keys(changes).forEach(key => {
+                const element = document.getElementById(key);
+                if (element) {
+                    const currentChange = parseFloat(element.textContent.replace(/[^0-9.-]+/g, ''));
+                    const variation = (Math.random() - 0.5) * 0.5;
+                    const newChange = currentChange + variation;
+                    
+                    element.textContent = `${newChange >= 0 ? '+' : ''}${newChange.toFixed(2)}%`;
+                    
+                    // Update color
+                    element.className = `market-change ${newChange >= 0 ? 'positive' : 'negative'}`;
+                }
+            });
+        }
+
+        // ===== INITIALIZATION =====
+        document.addEventListener('DOMContentLoaded', function() {
+            // Update copyright year
+            document.querySelector('.copyright p:first-child').innerHTML = 
+                `&copy; ${new Date().getFullYear()} GlobalTrade360. All rights reserved.`;
+            
+            // Check for existing session
+            const savedToken = localStorage.getItem('gt360_token');
+            const savedUser = localStorage.getItem('gt360_user');
+            
+            if (savedToken && savedUser) {
+                currentUser = JSON.parse(savedUser);
+                authToken = savedToken;
+                // Uncomment to auto-show dashboard
+                // showDashboard();
+            }
+            
+            // Live market updates every 10 seconds
+            setInterval(updateMarketPrices, 10000);
+            
+            // Mobile menu toggle
+            document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+                document.querySelector('.nav-links').classList.toggle('show');
+            });
+            
+            // Close modal on outside click
+            document.getElementById('authModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeAuthModal();
+                }
+            });
+            
+            // Demo admin credentials hint (remove in production)
+            console.log('Demo Admin: admin@globalinvestment360 / myhandwork');
+        });
+
+        // ===== LOGOUT =====
+        function logout() {
+            currentUser = null;
+            authToken = null;
+            localStorage.removeItem('gt360_token');
+            localStorage.removeItem('gt360_user');
+            window.location.reload();
+        }
+    </script>
+</body>
+</html>
